@@ -123,11 +123,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BookstoreMedia.h" />
+    <ClInclude Include="CafeteriaItem.h" />
+    <ClInclude Include="CardPayment.h" />
+    <ClInclude Include="CashPayment.h" />
     <ClInclude Include="LabHardware.h" />
+    <ClInclude Include="Payment.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BookstoreMedia.cpp" />
+    <ClCompile Include="CafeteriaItem.cpp" />
+    <ClCompile Include="CardPayment.cpp" />
+    <ClCompile Include="CashPayment.cpp" />
     <ClCompile Include="LabHardware.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Payment.cpp" />
     <ClCompile Include="Resource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

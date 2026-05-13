@@ -1,7 +1,16 @@
 #include "Resource.h"
-#include <stdexcept>
+#include <exception>
+
+class InsufficientStock : public exception {
+public:
+
+    const char* what() const noexcept override {
+        return "Insufficient stock!";
+    }
+};
 
 Resource::Resource(int id, string name, double price, int stock) {
+
     this->id = id;
     this->name = name;
     this->price = price;
@@ -13,8 +22,9 @@ void Resource::restock(int amount) {
 }
 
 void Resource::purchase(int quantity) {
+
     if (quantity > stock) {
-        throw runtime_error("Insufficient stock");
+        throw InsufficientStock();
     }
 
     stock -= quantity;
@@ -41,6 +51,7 @@ bool Resource::operator>(const Resource& other) const {
 }
 
 ostream& operator<<(ostream& out, const Resource& r) {
+
     out << "ID: " << r.id << endl;
     out << "Name: " << r.name << endl;
     out << "Category: " << r.getCategory() << endl;

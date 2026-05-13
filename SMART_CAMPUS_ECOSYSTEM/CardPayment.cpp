@@ -1,6 +1,22 @@
 #include "CardPayment.h"
-#include <stdexcept>
+#include <exception>
 #include <cctype>
+
+class InvalidCardNumber : public exception {
+public:
+
+    const char* what() const noexcept override {
+        return "Card number must be exactly 16 digits!";
+    }
+};
+
+class InvalidCardFormat : public exception {
+public:
+
+    const char* what() const noexcept override {
+        return "Card must contain digits only!";
+    }
+};
 
 CardPayment::CardPayment(string cardNumber) {
     this->cardNumber = cardNumber;
@@ -9,13 +25,13 @@ CardPayment::CardPayment(string cardNumber) {
 void CardPayment::validateCard() const {
 
     if (cardNumber.length() != 16) {
-        throw invalid_argument("Invalid card number");
+        throw InvalidCardNumber();
     }
 
     for (char c : cardNumber) {
 
         if (!isdigit(c)) {
-            throw invalid_argument("Card must contain digits only");
+            throw InvalidCardFormat();
         }
     }
 }

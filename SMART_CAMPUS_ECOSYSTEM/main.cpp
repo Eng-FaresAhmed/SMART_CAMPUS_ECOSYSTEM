@@ -11,7 +11,19 @@
 #include "Order.h"
 #include "FileManager.h"
 #include "StockMonitor.h"
+#include "Store.h"
 using namespace std;
+
+// Template function: returns the cheapest resource in a vector
+template <typename T>
+T* findMin(vector<T*>& items) {
+    T* minItem = items[0];
+    for (T* item : items) {
+        if (item->getPrice() < minItem->getPrice())
+            minItem = item;
+    }
+    return minItem;
+}
 
 int main() {
     vector<Resource*> resources;
@@ -19,7 +31,6 @@ int main() {
     // Load previously saved resources from file
     FileManager::loadResources(resources);
 
- 
     if (resources.empty()) {
         resources.push_back(new LabHardware(1, "Dell Laptop", 50000, 5, 24));
         resources.push_back(new CafeteriaItem(2, "Burger", 120, 20, "10/6/2026"));
@@ -36,7 +47,17 @@ int main() {
         cout << endl;
     }
 
-    // Pre-registered Staff IDs — only these IDs are recognized as Staff
+    // Template function usage: find cheapest resource
+    Resource* cheapest = findMin(resources);
+    cout << "Cheapest Resource: " << cheapest->getName() << " (" << cheapest->getPrice() << " EGP)" << endl << endl;
+
+    // Aggregation: Store holds references to all resources
+    Store campusStore("Smart Campus Store");
+    for (Resource* r : resources) {
+        campusStore.addItem(r);
+    }
+
+    // Pre-registered Staff IDs ? only these IDs are recognized as Staff
     vector<string> validStaffIDs = { "S001", "S002", "S003", "S004", "S005" };
 
     // User registration section
@@ -94,19 +115,13 @@ int main() {
         getline(cin, menuChoice);
 
         if (menuChoice == "1") {
-            // Search for a resource by its ID
+            // Search using Store::findByID (Aggregation in action)
             cout << "Enter Resource ID to search: ";
             int searchID;
             cin >> searchID;
             cin.ignore();
 
-            Resource* found = nullptr;
-            for (Resource* r : resources) {
-                if (r->getId() == searchID) {
-                    found = r;
-                    break;
-                }
-            }
+            Resource* found = campusStore.findByID(searchID);
 
             if (found == nullptr) {
                 cout << "Resource not found." << endl;
@@ -211,7 +226,7 @@ int main() {
 
                 try {
                     if (payChoice == "2") {
-                        // Card payment — requires 16-digit card number
+                        // Card payment ? requires 16-digit card number
                         cout << "Enter 16-digit card number: ";
                         string cardNum;
                         getline(cin, cardNum);

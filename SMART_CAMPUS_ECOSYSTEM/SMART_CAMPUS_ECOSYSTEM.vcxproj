@@ -135,6 +135,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Staff.h" />
     <ClInclude Include="Stockmonitor.h" />
+    <ClInclude Include="store.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Staff.cpp" />
     <ClCompile Include="Stockmonitor.cpp" />
+    <ClCompile Include="store.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>

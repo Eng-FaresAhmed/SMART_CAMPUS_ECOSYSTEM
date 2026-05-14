@@ -11,4 +11,7 @@ public:
     void display() const override;
     string getCategory() const override;
     double operationalCost() const override;
+    //
+    string getExpiryDate() const;
+
 };

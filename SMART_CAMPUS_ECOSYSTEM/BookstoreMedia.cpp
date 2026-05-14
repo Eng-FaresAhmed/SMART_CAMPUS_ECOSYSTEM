@@ -18,3 +18,5 @@ string BookstoreMedia::getCategory() const {
 double BookstoreMedia::operationalCost() const {
     return price * 0.10;
 }
+//
+string BookstoreMedia::getAuthor() const { return author; }

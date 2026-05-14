@@ -1,0 +1,54 @@
+========== ORDER ==========
+User: saber
+Delivery: Pickup
+Total: 120.000000
+===========================
+
+========== ORDER ==========
+User:  fares
+Delivery: Delivery
+Total: 385.000000
+===========================
+
+========== ORDER ==========
+User: sami
+Delivery: Delivery
+Total: 133.000000
+===========================
+
+========== ORDER ==========
+User: eyad
+Delivery: Delivery
+Total: 145.000000
+===========================
+
+========== ORDER ==========
+User: ahmed
+Delivery: Pickup
+Total: 90000.000000
+===========================
+
+========== ORDER ==========
+User: khlo
+Delivery: Pickup
+Total: 700.000000
+===========================
+
+========== ORDER ==========
+User:  youssef
+Delivery: Delivery
+Total: 45025.000000
+===========================
+
+========== ORDER ==========
+User: rana
+Delivery: Delivery
+Total: 1225.000000
+===========================
+
+========== ORDER ==========
+User: omar
+Delivery: Pickup
+Total: 240.000000
+===========================
+

@@ -18,3 +18,7 @@ string CafeteriaItem::getCategory() const {
 double CafeteriaItem::operationalCost() const {
     return price * 0.15;
 }
+//
+string CafeteriaItem::getExpiryDate() const {
+    return expiryDate;
+}

@@ -26,4 +26,7 @@ public:
     double getTotal() const;
 
     void display() const;
+    //
+    string getSummary() const;
+
 };

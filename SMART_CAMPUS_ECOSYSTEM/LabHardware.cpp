@@ -18,3 +18,7 @@ string LabHardware::getCategory() const {
 double LabHardware::operationalCost() const {
     return price * 0.25;
 }
+//
+int LabHardware::getWarrantyMonths() const {
+    return warrantyMonths;
+}

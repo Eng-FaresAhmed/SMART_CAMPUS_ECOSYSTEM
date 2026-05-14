@@ -84,3 +84,11 @@ void Order::display() const {
     cout << "Total:     " << getTotal() << " EGP" << endl;
     cout << "=========================" << endl;
 }
+// 
+string Order::getSummary() const {
+    string s = "";
+    s += "User: " + user->getName() + "\n";
+    s += "Delivery: " + deliveryType + "\n";
+    s += "Total: " + to_string(getTotal()) + "\n";
+    return s;
+}

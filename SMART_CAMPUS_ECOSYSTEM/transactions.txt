@@ -58,3 +58,27 @@ Delivery: Delivery
 Total: 50025.000000
 ===========================
 
+========== ORDER ==========
+User: HEMA
+Delivery: Pickup
+Total: 45000.000000
+===========================
+
+========== ORDER ==========
+User: HUSSEIN
+Delivery: Delivery
+Total: 50145.000000
+===========================
+
+========== ORDER ==========
+User: S001
+Delivery: Pickup
+Total: 45000.000000
+===========================
+
+========== ORDER ==========
+User: anas
+Delivery: Pickup
+Total: 350.000000
+===========================
+

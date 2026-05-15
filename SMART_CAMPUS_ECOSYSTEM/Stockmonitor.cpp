@@ -6,7 +6,6 @@ StockMonitor::StockMonitor(vector<Resource*>& resources, int threshold, int inte
 
 void StockMonitor::monitor() {
     while (running) {
-        // فحص كل resource
         for (Resource* r : resources) {
             if (r->getStock() <= threshold) {
                 cout << "\n[STOCK ALERT] \"" << r->getName()
@@ -14,7 +13,6 @@ void StockMonitor::monitor() {
                     << " left.\n" << endl;
             }
         }
-        // انتظر الـ interval
         this_thread::sleep_for(chrono::seconds(intervalSeconds));
     }
 }

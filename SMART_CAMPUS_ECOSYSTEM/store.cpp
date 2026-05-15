@@ -31,26 +31,11 @@ Resource* Store::findByID(int id) const {
     return nullptr;
 }
 
-vector<Resource*> Store::filterByCategory(const string& category) const {
-    vector<Resource*> result;
-    for (Resource* item : items) {
-        if (item->getCategory() == category)
-            result.push_back(item);  
-    }
-    return result;
+vector<Resource*> Store::getItems() const {
+    return items;
 }
 
-
-Store::~Store() {
-    items.clear();  // just clears pointers, does NOT free memory
-}Resource* Store::findByID(int id) const {
-    for (Resource* item : items) {
-        if (item->getId() == id)
-            return item;
-    }
-    return nullptr;
-}
-
+// Aggregation: does NOT delete — main() owns the resources
 Store::~Store() {
     items.clear();
 }

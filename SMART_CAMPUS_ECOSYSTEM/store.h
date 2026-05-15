@@ -10,7 +10,7 @@ class Store {
 private:
     string storeName;
 
-    
+    // Aggregation: Store does NOT own these Resources.
     vector<Resource*> items;
 
 public:
@@ -20,7 +20,7 @@ public:
     int getCount() const;
     Resource* findByID(int id) const;
 
-    vector<Resource*> filterByCategory(const string& category) const;
+    vector<Resource*> getItems() const;
 
     ~Store();
 };

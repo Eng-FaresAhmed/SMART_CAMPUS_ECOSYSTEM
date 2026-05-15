@@ -106,7 +106,7 @@ void FileManager::saveOrder(const Order& order, const string& filename) {
             throw runtime_error("Could not open file for writing: " + filename);
         }
 
-        file << "========== ORDER ==========\n";
+        file << "========== ORDER ==========\n"; 
         file << order.getSummary();
         file << "===========================\n\n";
 

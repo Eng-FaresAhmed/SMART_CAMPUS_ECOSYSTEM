@@ -3,7 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <stdexcept>
+#include <exception>
 
 #include "Resource.h"
 #include "LabHardware.h"

@@ -1,17 +1,29 @@
-#include "Filemanager.h"
 #include "FileManager.h"
 
-// SAVE RESOURCES 
+// File Exceptions
+class FileOpenError : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Could not open file!";
+    }
+};
+
+class FileLoadError : public exception {
+public:
+    const char* what() const noexcept override {
+        return "Could not load resources from file!";
+    }
+};
+
+// SAVE RESOURCES
 void FileManager::saveResources(const vector<Resource*>& resources, const string& filename) {
     try {
         ofstream file(filename);
-        if (!file.is_open()) {
-            throw runtime_error("Could not open file for writing: " + filename);
-        }
+        if (!file.is_open())
+            throw FileOpenError();
 
         for (Resource* r : resources) {
             string category = r->getCategory();
-
             file << category << "|"
                 << r->getId() << "|"
                 << r->getName() << "|"
@@ -30,10 +42,8 @@ void FileManager::saveResources(const vector<Resource*>& resources, const string
                 BookstoreMedia* bm = dynamic_cast<BookstoreMedia*>(r);
                 file << bm->getAuthor();
             }
-
             file << "\n";
         }
-
         file.close();
         cout << "[FileManager] Resources saved to " << filename << endl;
     }
@@ -42,13 +52,12 @@ void FileManager::saveResources(const vector<Resource*>& resources, const string
     }
 }
 
-//  LOAD RESOURCES 
+// LOAD RESOURCES
 void FileManager::loadResources(vector<Resource*>& resources, const string& filename) {
     try {
         ifstream file(filename);
-        if (!file.is_open()) {
-            throw runtime_error("Could not open file for reading: " + filename);
-        }
+        if (!file.is_open())
+            throw FileLoadError();
 
         for (Resource* r : resources) delete r;
         resources.clear();
@@ -56,7 +65,6 @@ void FileManager::loadResources(vector<Resource*>& resources, const string& file
         string line;
         while (getline(file, line)) {
             if (line.empty()) continue;
-
             vector<string> parts;
             string token;
             for (char c : line) {
@@ -69,7 +77,6 @@ void FileManager::loadResources(vector<Resource*>& resources, const string& file
                 }
             }
             parts.push_back(token);
-
             if (parts.size() < 6) continue;
 
             string category = parts[0];
@@ -79,17 +86,13 @@ void FileManager::loadResources(vector<Resource*>& resources, const string& file
             int    stock = stoi(parts[4]);
             string extra = parts[5];
 
-            if (category == "Lab Hardware") {
+            if (category == "Lab Hardware")
                 resources.push_back(new LabHardware(id, name, price, stock, stoi(extra)));
-            }
-            else if (category == "Cafeteria Item") {
+            else if (category == "Cafeteria Item")
                 resources.push_back(new CafeteriaItem(id, name, price, stock, extra));
-            }
-            else if (category == "Bookstore Media") {
+            else if (category == "Bookstore Media")
                 resources.push_back(new BookstoreMedia(id, name, price, stock, extra));
-            }
         }
-
         file.close();
         cout << "[FileManager] Resources loaded from " << filename << endl;
     }
@@ -98,18 +101,16 @@ void FileManager::loadResources(vector<Resource*>& resources, const string& file
     }
 }
 
-//  SAVE ORDER 
+// SAVE ORDER
 void FileManager::saveOrder(const Order& order, const string& filename) {
     try {
-        ofstream file(filename, ios::app); 
-        if (!file.is_open()) {
-            throw runtime_error("Could not open file for writing: " + filename);
-        }
+        ofstream file(filename, ios::app);
+        if (!file.is_open())
+            throw FileOpenError();
 
-        file << "========== ORDER ==========\n"; 
+        file << "========== ORDER ==========\n";
         file << order.getSummary();
         file << "===========================\n\n";
-
         file.close();
         cout << "[FileManager] Order saved to " << filename << endl;
     }

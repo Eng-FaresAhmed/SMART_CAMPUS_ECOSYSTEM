@@ -61,20 +61,15 @@ int main() {
         User* user = nullptr;
         bool isStaff = false;
 
-        auto it = find(validStaffIDs.begin(), validStaffIDs.end(), campusID);
+        auto it = find(validStaffIDs.begin(), validStaffIDs.end(), campusID);  //  it : algorithm library
         if (it != validStaffIDs.end()) {
             user = new Staff(name, campusID);
             isStaff = true;
-            cout << "Role detected: Staff" << endl;
-        }
-        else if (campusID.size() >= 2 && campusID[0] == 'S' && campusID[1] == 'T') {
-            user = new Student(name, campusID);
-            cout << "Role detected: Student" << endl;
         }
         else {
-            cout << "Invalid Campus ID format. Defaulting to Student." << endl;
             user = new Student(name, campusID);
         }
+       
 
         user->display();
         cout << endl;
@@ -101,7 +96,7 @@ int main() {
                 cout << "Enter Resource ID to search: ";
                 int searchID;
                 cin >> searchID;
-                cin.ignore();
+				cin.ignore(); //  Ignore leftover newline from previous input
 
                 // Template findByID applied on Store's items (Aggregation + Template)
                 vector<Resource*> storeItems = campusStore.getItems();
@@ -112,10 +107,7 @@ int main() {
                 }
                 else {
                     cout << "===== Resource Report =====" << endl;
-                    cout << "Name:     " << found->getName() << endl;
-                    cout << "Price:    " << found->getPrice() << " EGP" << endl;
-                    cout << "Category: " << found->getCategory() << endl;
-                    cout << "Stock:    " << found->getStock() << endl;
+                    cout << *found << endl;                                   // COUT OPERTOR
                     cout << "==========================" << endl;
                 }
             }
@@ -126,7 +118,7 @@ int main() {
                 cout << "Enter second Resource ID: ";
                 int id2;
                 cin >> id2;
-                cin.ignore();
+                cin.ignore(); 
 
                 vector<Resource*> storeItems = campusStore.getItems();
                 Resource* r1 = findByID(storeItems, id1);

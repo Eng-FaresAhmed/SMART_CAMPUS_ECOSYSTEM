@@ -23,13 +23,6 @@ int Store::getCount() const {
     return items.size();
 }
 
-Resource* Store::findByID(int id) const {
-    for (Resource* item : items) {
-        if (item->getId() == id)
-            return item;
-    }
-    return nullptr;
-}
 
 vector<Resource*> Store::getItems() const {
     return items;

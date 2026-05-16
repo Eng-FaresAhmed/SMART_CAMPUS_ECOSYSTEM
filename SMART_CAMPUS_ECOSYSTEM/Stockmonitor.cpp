@@ -13,7 +13,7 @@ void StockMonitor::monitor() {
                     << " left.\n" << endl;
             }
         }
-        this_thread::sleep_for(chrono::seconds(intervalSeconds));
+		this_thread::sleep_for(chrono::seconds(intervalSeconds)); //   CHRONO SLEEP DETECTE TYPE OF NUMBER AND CONVERTS TO DURATION OBJECT  seconds
     }
 }
 

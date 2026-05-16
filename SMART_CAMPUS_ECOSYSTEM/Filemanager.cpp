@@ -21,7 +21,7 @@ void FileManager::saveResources(const vector<Resource*>& resources, const string
         ofstream file(filename);
         if (!file.is_open())
             throw FileOpenError();
-
+        //Polymorphism
         for (Resource* r : resources) {
             string category = r->getCategory();
             file << category << "|"
@@ -33,6 +33,7 @@ void FileManager::saveResources(const vector<Resource*>& resources, const string
             if (category == "Lab Hardware") {
                 LabHardware* lh = dynamic_cast<LabHardware*>(r);
                 file << lh->getWarrantyMonths();
+
             }
             else if (category == "Cafeteria Item") {
                 CafeteriaItem* ci = dynamic_cast<CafeteriaItem*>(r);
@@ -104,7 +105,7 @@ void FileManager::loadResources(vector<Resource*>& resources, const string& file
 // SAVE ORDER
 void FileManager::saveOrder(const Order& order, const string& filename) {
     try {
-        ofstream file(filename, ios::app);
+		ofstream file(filename, ios::app); //  flag: Append mode does not delete existing transactions 
         if (!file.is_open())
             throw FileOpenError();
 

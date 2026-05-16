@@ -18,7 +18,6 @@ public:
     void addItem(Resource* item);
     void displayAll() const;
     int getCount() const;
-    Resource* findByID(int id) const;
 
     vector<Resource*> getItems() const;
 
